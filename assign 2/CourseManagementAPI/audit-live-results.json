@@ -1,0 +1,143 @@
+[
+  {
+    "name": "POST /course valid",
+    "status": 201,
+    "body": {
+      "message": "Course created successfully",
+      "data": {
+        "name": "NestJS Fundamentals",
+        "code": "CS101",
+        "instructor": "John Doe",
+        "credits": 3
+      }
+    }
+  },
+  {
+    "name": "GET /course",
+    "status": 200,
+    "body": {
+      "message": "All courses fetched successfully",
+      "data": []
+    }
+  },
+  {
+    "name": "GET /course/5",
+    "status": 200,
+    "body": {
+      "message": "Course fetched successfully",
+      "id": "5"
+    }
+  },
+  {
+    "name": "PUT /course/5 valid",
+    "status": 200,
+    "body": {
+      "message": "Course updated successfully",
+      "id": "5",
+      "data": {
+        "name": "NestJS Advanced",
+        "code": "CS201",
+        "instructor": "Jane Doe",
+        "credits": 4
+      }
+    }
+  },
+  {
+    "name": "PATCH /course/5 valid",
+    "status": 200,
+    "body": {
+      "message": "Course patched successfully",
+      "id": "5",
+      "updatedFields": [
+        "name",
+        "credits"
+      ]
+    }
+  },
+  {
+    "name": "DELETE /course/5",
+    "status": 200,
+    "body": {
+      "message": "Course deleted successfully",
+      "id": "5"
+    }
+  },
+  {
+    "name": "POST /course/5/upload valid pdf",
+    "status": 201,
+    "body": {
+      "message": "Material uploaded successfully",
+      "courseId": "5",
+      "filename": "1776274389929-valid-binary.pdf",
+      "path": "uploads/1776274389929-valid-binary.pdf"
+    }
+  },
+  {
+    "name": "POST /course invalid empty name",
+    "status": 400,
+    "body": {
+      "message": [
+        "name should not be empty"
+      ],
+      "error": "Bad Request",
+      "statusCode": 400
+    }
+  },
+  {
+    "name": "POST /course invalid credits 10",
+    "status": 400,
+    "body": {
+      "message": [
+        "credits must not be greater than 6"
+      ],
+      "error": "Bad Request",
+      "statusCode": 400
+    }
+  },
+  {
+    "name": "POST /course missing fields",
+    "status": 400,
+    "body": {
+      "message": [
+        "code should not be empty",
+        "code must be a string",
+        "instructor should not be empty",
+        "instructor must be a string",
+        "credits must not be greater than 6",
+        "credits must not be less than 1",
+        "credits must be a number conforming to the specified constraints"
+      ],
+      "error": "Bad Request",
+      "statusCode": 400
+    }
+  },
+  {
+    "name": "POST /course unknown field",
+    "status": 400,
+    "body": {
+      "message": [
+        "property extra should not exist"
+      ],
+      "error": "Bad Request",
+      "statusCode": 400
+    }
+  },
+  {
+    "name": "POST /course/5/upload invalid txt",
+    "status": 400,
+    "body": {
+      "message": "Only .jpg, .jpeg, .png and .pdf files are allowed",
+      "error": "Bad Request",
+      "statusCode": 400
+    }
+  },
+  {
+    "name": "POST /course/5/upload file too large",
+    "status": 400,
+    "body": {
+      "statusCode": 400,
+      "message": "File too large. Maximum allowed size is 2MB",
+      "error": "Bad Request"
+    }
+  }
+]
